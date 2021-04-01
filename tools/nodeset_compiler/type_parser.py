@@ -273,10 +273,10 @@ class TypeParser():
                     continue
                 typename = child.get("TypeName")
                 if typename and get_type_name(typename)[1] == "Bit":
-                    if re.match(re.compile('.+Specified'), child.get("Name")):
+                    if re.match(re.compile('.+Specified|Bit\d+'), child.get("Name")):
                         opt_fields.append(child.get("Name"))
-                    elif child.get("Name") == "Reserved1":
-                        if len(opt_fields) + int(child.get("Length")) != 32:
+                    elif child.get("Name") == "Reserved":
+                        if len(opt_fields) + int(child.get("Length")) != 8:
                             return False
                         else:
                             break
