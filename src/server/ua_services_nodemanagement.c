@@ -486,8 +486,7 @@ findChildByBrowsename(UA_Server *server, UA_Session *session,
     UA_StatusCode retval = UA_STATUSCODE_GOOD;
     for(size_t i = 0; i < br.referencesSize; ++i) {
         UA_ReferenceDescription *rd = &br.references[i];
-        if(rd->browseName.namespaceIndex == browseName->namespaceIndex &&
-           UA_String_equal(&rd->browseName.name, &browseName->name)) {
+        if(UA_String_equal(&rd->browseName.name, &browseName->name)) {
             retval = UA_NodeId_copy(&rd->nodeId.nodeId, outInstanceNodeId);
             break;
         }
