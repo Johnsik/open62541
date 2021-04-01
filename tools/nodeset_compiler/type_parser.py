@@ -135,7 +135,7 @@ class EnumerationType(Type):
 
         for child in xml:
             if child.tag == "{http://opcfoundation.org/BinarySchema/}EnumeratedValue":
-                self.elements[child.get("Name")] = child.get("Value")
+                self.elements[child.get("AltName") or child.get("Name")] = child.get("Value")
 
 
 class OpaqueType(Type):
